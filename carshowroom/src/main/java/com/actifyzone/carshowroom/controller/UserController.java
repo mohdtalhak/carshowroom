@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.actifyzone.carshowroom.entity.User;
 import com.actifyzone.carshowroom.repository.UserRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -33,20 +31,18 @@ public class UserController {
     public String login(@RequestBody User user)
     {
         User u = repo.findByUsernameAndPassword(user.username, user.password);
-
-        if(u != null)
-        {
+        
+        if(u == null){
+            return "Invalid Username and Password!";
+        }
+        if(u.token != null){
+            return "Already Logged In, Cannot re-Login again!";
+        }
             String token = UUID.randomUUID().toString();
             u.token = token;
             u.tokenCreatedAt = LocalDateTime.now();
             repo.save(u);
-
             return "You have LoggedIn Successfully!\nToken : " + token;
-        }
-        else
-        {
-            return "Invalid Username or Password";
-        }
     }
 
     @PostMapping("/logout")
