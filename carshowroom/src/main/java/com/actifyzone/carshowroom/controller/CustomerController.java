@@ -16,14 +16,10 @@ import com.actifyzone.carshowroom.entity.User;
 import com.actifyzone.carshowroom.repository.CarRepository;
 import com.actifyzone.carshowroom.repository.CustomerRepository;
 import com.actifyzone.carshowroom.repository.UserRepository;
+import com.actifyzone.carshowroom.service.EmailService;
 
 import org.springframework.web.context.annotation.RequestScope;
 import java.time.Duration;
-
-
-
-
-
 
 @RestController
 public class CustomerController {
@@ -37,27 +33,32 @@ public class CustomerController {
     @Autowired
     CarRepository carRepo;
 
+    @Autowired
+    EmailService emailService;
+
     @PostMapping("/customer")
-    public Object saveCustomer(@RequestBody Customer customer, @RequestHeader("Authorization") String authHeader){
+    public Object saveCustomer(@RequestBody Customer customer,@RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
         User u = userRepo.findByToken(token);
-        if(u == null){
+        if (u == null) {
             return "Invalid Token! Enter the correct Token.";
         }
-        if(u.tokenCreatedAt == null)
-        {
+        if (u.tokenCreatedAt == null) {
             return "Please Login Again";
         }
-        long hours = Duration.between(u.tokenCreatedAt,LocalDateTime.now()).toHours();
-        if(hours > 24){
+        long hours = Duration.between(u.tokenCreatedAt, LocalDateTime.now()).toHours();
+        if (hours > 24) {
             return "Token Expired! Please Login Again.";
         }
-        else{
-            if(u.role.equals("OWNER") || u.role.equals("MANAGER")){
-                return repo.save(customer);
+        if (u.role.equals("OWNER") || u.role.equals("MANAGER")) {
+            Customer savedCustomer = repo.save(customer);
+            if (savedCustomer.getMarketing().equalsIgnoreCase("Interested")) {
+                emailService.sendBookingMail(savedCustomer);
             }
-            return "Access Denied! You are not Allowed to save a Customer.";
+            return savedCustomer;
         }
+
+        return "Access Denied! You are not Allowed to save a Customer.";
     }
 
     @GetMapping("/customer")

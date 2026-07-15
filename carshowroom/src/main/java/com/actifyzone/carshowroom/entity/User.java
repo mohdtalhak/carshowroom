@@ -3,7 +3,12 @@ package com.actifyzone.carshowroom.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User
@@ -15,6 +20,8 @@ public class User
     public String username;
 
     public String password;
+
+    private String email;
 
     public String role;
 

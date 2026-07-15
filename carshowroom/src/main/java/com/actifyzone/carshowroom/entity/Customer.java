@@ -1,9 +1,14 @@
 package com.actifyzone.carshowroom.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class Customer {
 
@@ -15,7 +20,9 @@ public class Customer {
 
     public String email;
 
-    public String bookingDate;
+    public LocalDate bookingDate;
+
+    private String marketing;
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Car> cars;
