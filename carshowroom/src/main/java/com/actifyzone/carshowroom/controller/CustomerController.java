@@ -37,7 +37,8 @@ public class CustomerController {
     EmailService emailService;
 
     @PostMapping("/customer")
-    public Object saveCustomer(@RequestBody Customer customer,@RequestHeader("Authorization") String authHeader) {
+    public Object saveCustomer(@RequestBody Customer customer, @RequestHeader("Authorization") String authHeader) {
+
         String token = authHeader.substring(7);
         User u = userRepo.findByToken(token);
         if (u == null) {
@@ -52,12 +53,15 @@ public class CustomerController {
         }
         if (u.role.equals("OWNER") || u.role.equals("MANAGER")) {
             Customer savedCustomer = repo.save(customer);
-            if (savedCustomer.getMarketing().equalsIgnoreCase("Interested")) {
-                emailService.sendBookingMail(savedCustomer);
+            if ("Interested".equalsIgnoreCase(savedCustomer.getMarketing())) {
+                try {
+                    emailService.sendBookingMail(savedCustomer);
+                } catch (Exception e) {
+                System.out.println("Email failed to send: " + e.getMessage());
+                }
             }
             return savedCustomer;
         }
-
         return "Access Denied! You are not Allowed to save a Customer.";
     }
 
