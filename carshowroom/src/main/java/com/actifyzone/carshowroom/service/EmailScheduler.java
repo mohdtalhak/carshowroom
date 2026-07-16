@@ -21,7 +21,7 @@ public class EmailScheduler {
     @Autowired
     CustomerRepository customerRepo;
 
-    @Scheduled(cron = "0 21 10 * * *")
+    @Scheduled(cron = "0 0 10 * * *")
     public void dailyMarketingMail() {
 
         List<Customer> customers = customerRepo.findAll();
