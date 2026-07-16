@@ -57,7 +57,7 @@ public class CustomerController {
                 try {
                     emailService.sendBookingMail(savedCustomer);
                 } catch (Exception e) {
-                System.out.println("Email failed to send: " + e.getMessage());s
+                System.out.println("Email failed to send: " + e.getMessage());
                 }
             }
             return savedCustomer;
