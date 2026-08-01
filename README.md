@@ -1,6 +1,6 @@
 # 🚗 Car Showroom Management System
 
-A full-stack Car Showroom Management System built using **Spring Boot** and **PostgreSQL**. The application allows efficient management of customers, cars, bookings, and users while implementing secure authentication and role-based authorization.
+A full-stack Car Showroom Management System built using **Spring Boot** and **PostgreSQL**. The application allows efficient management of customers, cars, bookings, and users while implementing secure authentication and role-based authorization.And for a info this is my Peak project I have ever worked on hence it is having too many features.
 
 ---
 
