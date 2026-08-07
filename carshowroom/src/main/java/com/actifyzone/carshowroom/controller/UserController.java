@@ -62,11 +62,11 @@ public class UserController {
     public Object profile(@RequestHeader("Authorization") String authHeader){
         String token = authHeader.substring(7);
         User u = repo.findByToken(token);
-        if(u.role.equals("CUSTOMER"))
+        if (u.role.equals("OWNER") || u.role.equals("MANAGER") || u.role.equals("CUSTOMER"))
         {
             return u;
         }
-        return "Only the Customer Himself Can View his own Profile!";
+        return "Wrong Role Entered!";
     }
     
 }
