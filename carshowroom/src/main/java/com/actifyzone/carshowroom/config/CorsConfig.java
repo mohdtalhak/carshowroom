@@ -17,7 +17,7 @@ public class CorsConfig {
 
                 registry.addMapping("/**")
                         .allowedOrigins(
-                            "http://localhost:3000"
+                            "http://localhost:3000", "https://gtauto.netlify.app"
                         )
                         .allowedMethods("*")
                         .allowedHeaders("*");

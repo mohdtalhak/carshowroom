@@ -391,6 +391,7 @@ public class CustomerController {
                 c.name = customer.name;
                 c.email = customer.email;
                 c.bookingDate = customer.bookingDate;
+                c.cars = customer.cars; 
 
                 return repo.save(c);
             }

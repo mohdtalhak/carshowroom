@@ -68,5 +68,10 @@ public class UserController {
         }
         return "Wrong Role Entered!";
     }
+
+    @GetMapping("/users")
+    public Object getAllUsers() {
+        return repo.findAll();
+}
     
 }
