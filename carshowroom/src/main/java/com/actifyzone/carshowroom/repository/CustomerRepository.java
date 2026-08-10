@@ -1,5 +1,6 @@
 package com.actifyzone.carshowroom.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -18,7 +19,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
         List<Customer> findByEmailContainingIgnoreCase(String name);
 
-        List<Customer> findByBookingDate(String bookingDate);
+        List<Customer> findByBookingDate1(LocalDate bookingDate);
 
         List<Customer> findByEmail(String email);
 
@@ -48,4 +49,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
         @Query("SELECT c.name, c.email, car.model FROM Customer c JOIN c.cars car")
         List<Object[]> getCustomersCarsProjectionJoin();
+
+        Object findByBookingDate(LocalDate bookingDate);
 }

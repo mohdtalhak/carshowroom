@@ -20,6 +20,7 @@ import com.actifyzone.carshowroom.service.EmailService;
 
 import org.springframework.web.context.annotation.RequestScope;
 import java.time.Duration;
+import java.time.LocalDate;
 
 @RestController
 public class CustomerController {
@@ -145,17 +146,23 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/filter/date/{bookingDate}")
-    public Object filterByDate(@PathVariable String bookingDate, @RequestHeader("Authorization") String authHeader) {
+    public Object filterByDate(@PathVariable LocalDate bookingDate, @RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
         User u = userRepo.findByToken(token);
-        if(u == null)    return "Invalid Token! Enter the correct Token.";
+        if (u == null)
+            return "Invalid Token! Enter the correct Token.";
 
-        if(u.tokenCreatedAt == null)    return "Please Login Again";
+        if (u.tokenCreatedAt == null)
+            return "Please Login Again";
 
-        long hours = Duration.between(u.tokenCreatedAt, LocalDateTime.now()).toHours();
-        if(hours > 24)  return "Token Expired! Please Login Again.";
+        long hours = Duration.between(
+                u.tokenCreatedAt,
+                LocalDateTime.now()).toHours();
 
-        if(!(u.role.equals("OWNER") || u.role.equals("MANAGER"))){
+        if (hours > 24)
+            return "Token Expired! Please Login Again.";
+
+        if (!(u.role.equals("OWNER") || u.role.equals("MANAGER"))) {
             return "Access Denied! You are not Allowed to access this Restricted Data.";
         }
 
