@@ -1,6 +1,7 @@
 package com.actifyzone.carshowroom.repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
         List<Customer> findByEmailContainingIgnoreCase(String name);
 
-        List<Customer> findByBookingDate1(LocalDate bookingDate);
+        List<Customer> findByBookingDate(LocalDateTime bookingDate);
 
         List<Customer> findByEmail(String email);
 
