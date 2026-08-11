@@ -1,175 +1,108 @@
-# 🚗 Car Showroom Management System
+# 🚗 Car Showroom Management System - Backend
 
-A full-stack Car Showroom Management System built using **Spring Boot** and **PostgreSQL**. The application allows efficient management of customers, cars, bookings, and users while implementing secure authentication and role-based authorization.And for a info this is my Peak project I have ever worked on hence it is having too many features.
+A **Spring Boot REST API** backend for a full-stack Car Showroom Management System. The application manages customers, vehicles, bookings, authentication, customer-vehicle relationships, and showroom analytics.
+
+Built using **Java, Spring Boot, Spring Data JPA, Hibernate, PostgreSQL, and REST APIs**.
 
 ---
 
-## 📌 Features
+## 🤝 Full-Stack Project
 
-- Customer Management (Add, Update, Delete, View)
-- Car Management
-- Customer-Car Booking Relationship
-- JWT Token Authentication
-- Role-Based Authorization (Owner & Employee)
-- Search Customers
-- Dashboard Statistics
-- Pagination
-- Sorting
-- Filtering
-- RESTful APIs
-- PostgreSQL Database Integration
+This project was developed as a frontend-backend collaboration.
+
+### 🎨 Frontend
+
+**Bhavik Sapat**
+
+GitHub: https://github.com/BhavikSapat
+
+Frontend Repository:
+https://github.com/BhavikSapat/car-showroom/
+
+Live Preview:
+https://gtautos.netlify.app
+
+### ⚙️ Backend
+
+**Mohammad Talha Khan**
+
+GitHub: https://github.com/mohdtalhak
+
+Backend Repository:
+https://github.com/mohdtalhak/car-showroom-management-system
+
+---
+
+## ✨ Features
+
+* 👤 User registration and login
+* 🔐 Token-based authentication
+* 🛡️ Role-based authorization
+* 👥 Customer CRUD operations
+* 🚗 Vehicle CRUD operations
+* 🔗 Customer-vehicle assignments
+* 📅 Booking date management
+* 🔎 Searching and filtering
+* ↕️ Sorting
+* 📑 Pagination
+* 📊 Dashboard statistics
+* 📈 Advanced database queries and reports
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
-- Java 21
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate
-- Maven
+**Backend:** Java 21, Spring Boot 4, Spring Data JPA, Hibernate, Lombok
 
-### Database
-- PostgreSQL
+**Database:** PostgreSQL
 
-### Tools
-- DBeaver
-- Postman
-- IntelliJ IDEA
-- Git & GitHub
+**Tools:** Postman, DBeaver, Maven, Git & GitHub
+
+**Deployment:** Railway
 
 ---
 
-## 📂 Project Structure
+## 🏗️ Architecture
 
+```text
+Frontend
+    ↓
+REST API
+    ↓
+Spring Boot
+    ↓
+Spring Data JPA
+    ↓
+PostgreSQL
 ```
-src
- ├── controller
- ├── service
- ├── repository
- ├── entity
- ├── dto
- ├── config
- ├── security
- └── resources
-```
+
+The backend follows a layered structure using **Controllers, Entities, Repositories, and Services** where required.
 
 ---
 
-## 🔐 Authentication
+## 🚀 Running Locally
 
-The application uses:
-
-- JWT Authentication
-- Spring Security
-- Role Based Access Control
-
-Roles:
-
-- OWNER
-- EMPLOYEE
-
-Only Owners can perform sensitive operations like deleting users or customers.
-
----
-
-## 📋 API Features
-
-### Customer APIs
-
-- Create Customer
-- Update Customer
-- Delete Customer
-- Get Customer Details
-- Get All Customers
-- Search Customers
-- Customer Count
-
-### Car APIs
-
-- Add Car
-- View Cars
-- Car Count
-
-### User APIs
-
-- Register
-- Login
-- Logout
-- Profile
-
----
-
-## 📈 Additional Features
-
-- Pagination
-- Sorting
-- Filtering
-- Search by:
-  - Name
-  - Email
-  - Booking Date
-  - Customer ID
-
----
-
-## ⚙️ Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/yourusername/car-showroom-management-system.git
-```
-
-Move into the project
-
-```bash
-cd car-showroom-management-system
-```
-
-Configure PostgreSQL in
-
-```
-application.properties
-```
-
-Run the application
+1. Clone the repository.
+2. Create a PostgreSQL database.
+3. Configure the database credentials in `application.properties`.
+4. Run the application using:
 
 ```bash
 mvn spring-boot:run
 ```
 
----
+The backend runs by default on:
 
-## 🗄️ Database
-
-Database Used:
-
-- PostgreSQL
-
-ORM:
-
-- Hibernate
-- Spring Data JPA
+```text
+http://localhost:8080
+```
 
 ---
 
-## 🚀 Future Improvements
-
-- Image Upload for Cars
-- Email Notifications
-- Payment Integration
-- Reports & Analytics
-- React Frontend
-- Docker Deployment
-
----
-
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
 **Mohammad Talha Khan**
 
-GitHub:
-https://github.com/mohdtalhak
+Backend Developer
+
+**Java • Spring Boot • PostgreSQL • REST APIs • JPA • Hibernate**
