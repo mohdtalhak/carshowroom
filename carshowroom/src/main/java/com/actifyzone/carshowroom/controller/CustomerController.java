@@ -23,6 +23,7 @@ import com.actifyzone.carshowroom.repository.UserRepository;
 import com.actifyzone.carshowroom.service.EmailService;
 
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Map;
 import java.util.Optional;
 import java.time.Duration;
@@ -266,6 +267,7 @@ public class CustomerController {
         return repo.getCustomerByDate(date);
     }
 
+    @Transactional(readOnly = true)
     @GetMapping("/customer/query/join/customercar")
     public Object getCustomerandCar(@RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
@@ -386,7 +388,7 @@ public class CustomerController {
 
         if (u.role.equals("OWNER") || u.role.equals("MANAGER")) {
             Customer c = repo.findById(customerId).get();
-                c.name = customer.name;
+            c.name = customer.name;
             c.email = customer.email;
             c.bookingDate = customer.bookingDate;
             return repo.save(c);

@@ -49,7 +49,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("SELECT COUNT(c) FROM Customer c JOIN c.assignedModels m")
     Long getCustomersCountHavingCars();
 
-    @Query("SELECT c.name, c.email, m.modelName FROM Customer c JOIN c.assignedModels m")
+    @Query("SELECT c.name, c.email, m.modelName, m.car.company FROM Customer c JOIN c.assignedModels m")
     List<Object[]> getCustomersCarsProjectionJoin();
 
     Object findByBookingDate(LocalDate bookingDate);
